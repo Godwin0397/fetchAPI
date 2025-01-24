@@ -1,5 +1,10 @@
+var h1tag = document.createElement("h1")
+h1tag.innerHTML = "Live Weather"
+h1tag.style = "text-align: center;"
+document.body.append(h1tag)
 var container = document.createElement("div")
 container.className = "container"
+container.style = "width: 1200px; height: 120%;"
 
 var row = document.createElement("div")
 row.className = "row"
@@ -14,15 +19,21 @@ function temperatureFunction(data){
     console.log('item', item)
     var col1 = document.createElement("div")
     col1.className = "col-md-4"
-    col1.style = "margin-top: 20px;"
-    col1.innerHTML += `<div class="card" style="width: 18rem;">
-            <img src="${item.flags.png}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">${item.name.official}</h5>
-                <p class="card-text">${item.capital}</p>
-            </div>
-        </div>`
-
+    
+    col1.innerHTML += `<div class="card text-center">
+                            <div class="card-header">${item.name.official}</div>
+                            <div class="card-body">
+                                <img src="${item.flags.png}" class="card-img-top" alt="..." style>
+                                <h5 class="card-title" style="margin-top: 20px;"><b>Capital:</b> ${item.capital}</h5>
+                                <p class="card-text"><b>Region:</b> ${item.region}</p>
+                                <p class="card-text"><b>Country-Code:</b> ${item.altSpellings[0]}</p>
+                                <p class="card-text"><b>Population:</b> ${item.population}</p>
+                            </div>
+                            <div class="card-footer text-muted">
+                                <a href="#" class="btn btn-danger">Clikc of weather</a>
+                            </div>
+                        </div>`
+                        
     row.append(col1)
     container.append(row)
     document.body.append(container)
